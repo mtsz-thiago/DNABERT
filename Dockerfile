@@ -1,9 +1,6 @@
+
 FROM nvidia/cuda:10.2-cudnn7-runtime-centos8
 
-# [Option] Install Node.js
-ARG INSTALL_NODE="true"
-ARG NODE_VERSION="lts/*"
-RUN if [ "${INSTALL_NODE}" = "true" ]; then su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"; fi
 
 RUN yum -y update && \
     yum -y install python3-devel python3-pip && \
