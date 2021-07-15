@@ -29,14 +29,14 @@ FROM nvidia/cuda:10.2-cudnn7-runtime-centos8 AS DNABERT
 
 WORKDIR /app
 
-COPY --from=DEV /usr/local/lib/python3.6/site-packages/ /usr/local/lib/python3.6/
+COPY --from=DEV /usr/local/lib/python3.6/site-packages/ /usr/local/lib/python3.6/site-packages
 
 RUN yum -y update && \
     yum -y install python3
 
 COPY --from=PIP_INSTALL /tmp/examples/*.py ./
 COPY --from=PIP_INSTALL /tmp/examples/scripts/ .
-COPY --from=PIP_INSTALL /tmp/examples/motif/ .
-COPY --from=PIP_INSTALL /tmp/examples/SNP/ .
+COPY --from=PIP_INSTALL /tmp/motif/ ./motif/
+COPY --from=PIP_INSTALL /tmp/SNP/ ./SNP/
 
 ENTRYPOINT ["python3"]
